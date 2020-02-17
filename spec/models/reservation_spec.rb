@@ -24,5 +24,9 @@ RSpec.describe Reservation, type: :model do
     it 'Creates a Reservation without an email' do
       expect(FactoryBot.build(:reservation, email: nil)).not_to be_valid
     end
+
+    it 'creates a reservation without a related movie' do
+      expect(FactoryBot.build(:reservation, movie_id: nil)).not_to be_valid
+    end
   end
 end
