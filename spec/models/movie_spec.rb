@@ -8,16 +8,16 @@ RSpec.describe Movie, type: :model do
       expect(FactoryBot.build(:movie)).to be_valid
     end
   end
-  context 'Creates a movie invalid information' do
-    it 'Creates a movie without title' do
+  context 'Does not Create a movie with invalid information' do
+    it 'Does not create a movie without title' do
       expect(FactoryBot.build(:movie, title: nil)).not_to be_valid
     end
 
-    it 'Creates a movie without a synopsis' do
+    it 'Does not create a movie without a synopsis' do
       expect(FactoryBot.build(:movie, Sinopsis: nil)).not_to be_valid
     end
 
-    it 'Creates a movie without a poster url' do
+    it 'Does not create a movie without a poster url' do
       expect(FactoryBot.build(:movie, Poster_url: nil)).not_to be_valid
     end
   end
