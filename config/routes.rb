@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'homepage#index'
   namespace :api do
     namespace :v1 do
-      resources :movie, only: [:index]
+      resources :movie, only: [:index, :create]
     end
   end
   get '*path', to: 'homepage#index'
