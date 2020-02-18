@@ -17,6 +17,7 @@
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
+    "react-dates": "^21.8.0",
     "react-dom": "^16.12.0",
     "react-next-paging": "^7.0.7",
     "react-redux": "^7.1.3",

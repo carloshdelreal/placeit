@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import teamsReducer from './teams';
+import movieReducer from './movie';
 
 const generalReducer = combineReducers({
-  teamsList: teamsReducer,
+  movie: movieReducer,
 });
 
 export default generalReducer;

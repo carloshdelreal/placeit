@@ -1,10 +1,10 @@
-const LOAD_TEAMS = 'LOAD_TEAMS';
+const LOAD_MOVIE = 'LOAD_MOVIE';
 
-const loadTeams = teams => ({
-  type: LOAD_TEAMS,
-  payload: teams,
+const loadNewMovie = movie => ({
+  type: LOAD_MOVIE,
+  payload: movie,
 });
 
 export {
-  loadTeams,
+  loadNewMovie,
 };

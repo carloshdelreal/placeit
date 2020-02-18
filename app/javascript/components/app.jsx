@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { loadTeams } from '../actions/index';
 import Home from './home';
 
 const csrfToken = document.querySelector('[name=csrf-token]').content;
