@@ -4,17 +4,27 @@ class Api::V1::MovieController < ApplicationController
   end
 
   def create
-    @movie = Movie.create!(movie_params)
+    @movie = Movie.create!(
+      title: movie_params[:title],
+      Sinopsis: movie_params[:Sinopsis],
+      Poster_url: movie_params[:Poster_url]
+    )
+    movie_params[:dates].each do |date|
+      p = Presentation.where(date: date)
+      p = [Presentation.create(date: date)] if p.empty?
+      s = Schedule.create(movie_id: @movie.id, presentation_id: p[0].id)
+    end
+
     return unless @movie
 
     respond_to do |format|
-      format.json { render json: @movie }
+      format.json { render json: movie_params }
     end
   end
 
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :Sinopsis, :Poster_url)
+    params.require(:movie).permit(:title, :Sinopsis, :Poster_url, dates: [])
   end
 end

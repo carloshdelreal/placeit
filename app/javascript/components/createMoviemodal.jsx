@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { loadNewMovie } from '../actions/index';
+import MultipleDatePicker from 'react-multiple-datepicker'
 
 class ModalComponent extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class ModalComponent extends Component {
       title: '',
       sinopsis: '',
       url: '',
-      date: ''
+      dates: []
     }
     this.inputTitle = this.inputTitle.bind(this)
     this.inputSynopsis = this.inputSynopsis.bind(this)
@@ -43,9 +44,9 @@ class ModalComponent extends Component {
 
   async createMovie() {
     const { handleAccept } = this.props;
-    const { title, sinopsis, url } = this.state
+    const { title, sinopsis, url, dates } = this.state
     const res = await axios.post(`/api/v1/movie/`, {
-      movie: { title, Sinopsis:sinopsis, Poster_url:url }
+      movie: { title, Sinopsis:sinopsis, Poster_url:url, dates }
     });
     if (res.status === 200){
       handleAccept();
@@ -88,10 +89,9 @@ class ModalComponent extends Component {
                 <label htmlFor="poster_url">Poster URL</label>
                 <input required value={this.state.url} onChange={this.inputUrl} type="text" className="form-control" id="poster_url" placeholder="Poster URL" />
               </div>
-              <div className="form-group">
-                <label htmlFor="dateMovie">date</label>
-                <input required value={this.state.date} onChange={this.inputDate} type="date" className="form-control" id="dateMovie" placeholder="date" />
-              </div>
+              <MultipleDatePicker
+                onSubmit={dates => this.setState({dates})}
+              />
               <div className="row justify-content-center p-3">
                 <div className="col-6 col-sm-6 col-md-6 col-lg-4 text-right">
                   <button 
