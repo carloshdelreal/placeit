@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :movie, only: [:index, :create, :show], defaults: { format: :json }
-      resources :presentation, only: [:show], defaults: { format: :json }
+      resources :presentation, only: [:show], defaults: { format: :json } do
+        resources :movies, only: [:index]
+      end
       resources :reservation, only: [:index, :create], defaults: { format: :json }
     end
   end

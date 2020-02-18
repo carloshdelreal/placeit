@@ -28,6 +28,7 @@ class Api::V1::MovieController < ApplicationController
       format.json { render json: @movie }
     end
   end
+
   private
 
   def movie_params

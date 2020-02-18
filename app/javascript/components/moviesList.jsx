@@ -37,7 +37,7 @@ export default class MoviesList extends Component {
     const list = this.props.movies
 
     if (!list){
-      return (<div>Loading...</div>)
+      return (<div>No Hay películas para este día</div>)
     }
     return(
       <div className="container">

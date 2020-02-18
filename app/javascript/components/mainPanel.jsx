@@ -3,7 +3,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
 import ModalComponent from './createMoviemodal';
-import { SingleDatePicker } from 'react-dates';
+import DatePicker from 'react-datepicker2';
 import MoviesList from './moviesList';
 
 class MainPanel extends Component {
@@ -11,13 +11,12 @@ class MainPanel extends Component {
     super(props);
     this.state = {
       show: false,
-      calendarFocused: false,
-      createdAt: null,
-      movies: [],
+      value: '',
     };
     this.handleAccept = this.handleAccept.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.triggerModal = this.triggerModal.bind(this);
+    this.calendarChange = this.calendarChange.bind(this);
   }
 
   async componentDidMount() {
@@ -28,19 +27,6 @@ class MainPanel extends Component {
     this.setState({movies: movies.data})
   }
 
-
-  onDateChange = (createdAt) => {
-    if (createdAt) {
-      this.setState(() => ({ createdAt }));
-    }
-  };
-  onFocusChange = ({ focused }) => {
-    this.setState(() => ({ calendarFocused: focused }));
-  };
-
-  handleDateChange(event) {
-    this.setState({ chosenDate: event.target.value })
-  }
 
   handleAccept() {
     this.setState({ show: false });
@@ -54,7 +40,15 @@ class MainPanel extends Component {
     this.setState({ show: true });
   }
 
+  async calendarChange(value){
+    console.log(value.toJSON().slice(0,10))
+    const movies = await axios.get(`/api/v1/presentation/${value.toJSON().slice(0,10)}/movies`);
+    this.setState({movies: movies.data})
+  }
+
   render() {
+    const { movies } = this.state;
+    console.log(movies);
     return (
       <div className="col-8">
         <ModalComponent
@@ -73,18 +67,16 @@ class MainPanel extends Component {
           </div>
           <div className="row">
             <div className="col-4">
-              <SingleDatePicker
-                date={this.state.createdAt}
-                onDateChange={this.onDateChange}
-                focused={this.state.calendarFocused}
-                onFocusChange={this.onFocusChange}
+              <DatePicker
+                onChange={value => this.calendarChange(value)}
+                value={this.state.value}
               />
             </div>
           </div>
     
           <div className="row">
             <div className="col-12">
-              <MoviesList filter={this.state.createdAt} movies={this.state.movies} />
+              <MoviesList movies={movies} />
             </div>
           </div>
     
