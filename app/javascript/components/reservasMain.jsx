@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import Movie from './movie';
+import DatePicker from 'react-datepicker2';
 
 class ReservasMainPanel extends Component {
   constructor(props){
     super(props);
     this.state = {
       reservation: [],
-    }
+    };
+    this.calendarChange = this.calendarChange.bind(this);
   }
 
   async componentDidMount() {
@@ -15,10 +17,20 @@ class ReservasMainPanel extends Component {
     this.setState({reservation: reservation.data})
   }
 
+  async calendarChange(value){
+    console.log(value.toJSON().slice(0,10))
+    const reservations = await axios.get(`/api/v1/reservations/${value.toJSON().slice(0,10)}`);
+    this.setState({reservation: reservations.data})
+  }
+
   render() {
     return (
       <div className="col-8">
         <h3>Reservas Realizadas</h3>
+        <DatePicker
+          onChange={value => this.calendarChange(value)}
+          value={this.state.value}
+        />
         <table className="table">
           <thead>
             <tr>
