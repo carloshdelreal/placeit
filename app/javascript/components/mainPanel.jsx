@@ -1,8 +1,10 @@
+import axios from 'axios';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
 import ModalComponent from './createMoviemodal';
 import { SingleDatePicker } from 'react-dates';
+import MoviesList from './moviesList';
 
 class MainPanel extends Component {
   constructor(props){
@@ -11,12 +13,22 @@ class MainPanel extends Component {
       show: false,
       calendarFocused: false,
       createdAt: null,
+      movies: [],
     };
     this.handleAccept = this.handleAccept.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.triggerModal = this.triggerModal.bind(this);
 
   }
+
+  async componentDidMount() {
+    axios.defaults.headers.common['x-rapidapi-host'] = 'restcountries-v1.p.rapidapi.com';
+    axios.defaults.headers.common['x-rapidapi-key'] = '1033cb5a0bmshe605dbb12c196fcp1dc3f9jsn7633a6f60df8';
+    axios.defaults.headers.common.accepts = 'json';
+    const movies = await axios.get('/api/v1/movie');
+    this.setState({movies: movies.data})
+  }
+
 
   onDateChange = (createdAt) => {
     if (createdAt) {
@@ -67,14 +79,13 @@ class MainPanel extends Component {
                 onDateChange={this.onDateChange}
                 focused={this.state.calendarFocused}
                 onFocusChange={this.onFocusChange}
-                id="datep"
               />
             </div>
           </div>
     
           <div className="row">
             <div className="col-12">
-              Movies List
+              <MoviesList filter={this.state.createdAt} movies={this.state.movies} />
             </div>
           </div>
     

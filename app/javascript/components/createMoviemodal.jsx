@@ -89,8 +89,8 @@ class ModalComponent extends Component {
                 <input required value={this.state.url} onChange={this.inputUrl} type="text" className="form-control" id="poster_url" placeholder="Poster URL" />
               </div>
               <div className="form-group">
-                <label htmlFor="date">date</label>
-                <input required value={this.state.date} onChange={this.inputDate} type="date" className="form-control" id="date" placeholder="date" />
+                <label htmlFor="dateMovie">date</label>
+                <input required value={this.state.date} onChange={this.inputDate} type="date" className="form-control" id="dateMovie" placeholder="date" />
               </div>
               <div className="row justify-content-center p-3">
                 <div className="col-6 col-sm-6 col-md-6 col-lg-4 text-right">

@@ -6,3 +6,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+counter = 0
+300.times do
+  counter += 1
+  Presentation.create(date: Time.new + counter.day)
+end
