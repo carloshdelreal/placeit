@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   root 'homepage#index'
   namespace :api do
     namespace :v1 do
-      resources :movie, only: [:index, :create], defaults: { format: :json }
+      resources :movie, only: [:index, :create, :show], defaults: { format: :json }
       resources :presentation, only: [:show], defaults: { format: :json }
+      resources :reservation, only: [:index, :create], defaults: { format: :json }
     end
   end
   get '*path', to: 'homepage#index'

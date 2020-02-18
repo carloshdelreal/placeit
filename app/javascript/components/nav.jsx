@@ -1,5 +1,6 @@
 import React from 'react';
 import placeItLogo from '../images/placeit_logo';
+import { Link } from 'react-router-dom'
 
 const Nav = () => (
   <nav className="navbar col-4">
@@ -8,8 +9,8 @@ const Nav = () => (
     </div>
     <br></br>
     <ul>
-      <li>Reservas</li>
-      <li>Peliculas</li>
+      <li><Link to="/">Peliculas</Link></li>
+      <li><Link to="reservas">Reservas</Link></li>
     </ul>
   </nav>
 );

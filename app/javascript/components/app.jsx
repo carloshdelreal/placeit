@@ -6,9 +6,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Home from './home';
-
+import Reservas from './reservas'
 const csrfToken = document.querySelector('[name=csrf-token]').content;
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
+axios.defaults.headers.common.accepts = 'json';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
@@ -51,6 +52,7 @@ class App extends Component {
         <div className="notificationsFrame">
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/reservas" component={Reservas} />
           </Switch>
         </div>
       </BrowserRouter>

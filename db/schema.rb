@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_202638) do
   create_table "reservations", force: :cascade do |t|
     t.string "name"
     t.string "celphone", limit: 15
-    t.integer "cedula"
+    t.string "cedula"
     t.string "email"
     t.bigint "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false

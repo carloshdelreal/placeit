@@ -18,7 +18,6 @@ class MainPanel extends Component {
     this.handleAccept = this.handleAccept.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.triggerModal = this.triggerModal.bind(this);
-
   }
 
   async componentDidMount() {

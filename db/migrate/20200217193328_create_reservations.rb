@@ -5,7 +5,7 @@ class CreateReservations < ActiveRecord::Migration[6.0]
     create_table :reservations do |t|
       t.string :name
       t.string :celphone, limit: 15
-      t.integer :cedula
+      t.string :cedula
       t.string :email
       t.references :movie, null: false, foreign_key: true
 
