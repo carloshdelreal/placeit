@@ -1,0 +1,23 @@
+@import './variables';
+
+.navbar{
+  background-color: rgba($color: $color-main, $alpha: 0.7);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  ul{
+    list-style: none;
+    color: white;
+    li{
+      margin: 2rem;
+      a{
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}
+.navbar-brand{
+  padding: 3rem;
+}
