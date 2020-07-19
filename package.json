@@ -12,7 +12,7 @@
     "bootstrap": "^4.4.1",
     "flag-icon-css": "^3.4.6",
     "jquery": "^3.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
